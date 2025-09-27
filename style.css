@@ -1,26 +1,57 @@
 body {
     font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
+    background-color: #f4f4f4; /* Cor de fallback caso a imagem não carregue */
     margin: 0;
-    /* Removido o height: 100vh e o display: flex para permitir a rolagem normal. */
+
+    /* Propriedades para a imagem de fundo */
+    background-image: url('fundo01.png'); /* <-- SUBSTITUA AQUI pelo nome do arquivo da sua imagem */
+    background-size: cover; /* Garante que a imagem cubra toda a área */
+    background-position: center center; /* Centraliza a imagem */
+    background-repeat: no-repeat; /* Evita que a imagem se repita */
+    background-attachment: fixed; /* Opcional: faz a imagem de fundo ficar fixa ao rolar a página */
+
+    /* Propriedades para centralizar o conteúdo da página, como discutimos antes */
+    height: 100vh; /* Ocupa 100% da altura da tela */
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .container {
-    background-color: #fff;
+    background-color: rgba(255, 255, 255, 0.05);
+    color: white; /* Você deve mudar para a cor do seu design escuro */
     padding: 2em;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5); /* Sombra mais escura */
     
-    /* Centraliza o contêiner na página e adiciona margem em cima e embaixo. */
-    width: 90%;
-    max-width: 1200px;
-    margin: 2em auto; /* A chave para a centralização horizontal e vertical! */
+    /* Configuração Responsiva (Modo Retrato / Celular) */
+    width: 90%; /* Ocupa 90% da largura da tela */
+    max-width: 400px; /* Limite máximo para telas muito grandes */
+    margin: 2em auto; 
     
     box-sizing: border-box;
     text-align: center;
 }
 
-/* Opcional: Adicionar um estilo para o título da página de produtos */
+@media (orientation: landscape) and (min-width: 600px) {
+    .container {
+        /* Estilos Estáticos e Centralizados para o Modo Paisagem */
+        width: 600px; /* Largura estática e menor para o modo paisagem/desktop */
+        max-width: 600px; /* Garante que a largura seja fixa e estática */
+        margin: auto; /* Centraliza perfeitamente no meio da tela */
+        
+        /* Como o body já tem display: flex, vamos garantir que o container fique no centro */
+        /* O margin: auto é suficiente com a configuração flex do body. */
+    }
+}
+
+.container h1, 
+.container h2, 
+.container h3, 
+.container p {
+    color: white !important; /* Usando !important para forçar a cor, se necessário */
+}
+
 .container h1 {
     text-align: center;
     margin-bottom: 1em;
@@ -31,18 +62,50 @@ body {
     text-align: left;
 }
 
+/* --- Estilo para Campos de TEXTO (Correto para o Tema Escuro) --- */
+input {
+    width: 100%;
+    padding: 0.8em;
+    
+    /* Fundo escuro e transparente */
+    background-color: rgba(255, 255, 255, 0.05); 
+    
+    /* Cor do texto digitado é branca */
+    color: rgba(255, 255, 255, 0.5); 
+    
+    border: 1px solid rgba(255, 255, 255, 0.3); 
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+
+/* --- Estilo para o Campo SELECT (Corrigido para Legibilidade do Menu) --- */
+select {
+    width: 100%;
+    padding: 0.8em;
+    
+    /* Fundo do CAMPO é escuro (mantém o design) */
+    background-color: rgba(255, 255, 255, 0.05); 
+    
+    /* CORREÇÃO CHAVE: Define o texto como preto/escuro.
+       Isso força o menu suspenso nativo a aparecer legível (fundo branco, texto escuro). */
+    color: rgba(255, 255, 255, 0.5); 
+    
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+/* Opcional: Garante que as opções internas do SELECT fiquem legíveis (texto escuro em fundo claro) */
+select option {
+    background-color: white;
+    color: #333; 
+}
+
 label {
     display: block;
     margin-bottom: 0.5em;
     font-weight: bold;
-}
-
-input, select {
-    width: 100%;
-    padding: 0.8em;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-sizing: border-box;
 }
 
 button {
@@ -64,21 +127,30 @@ button:hover {
 #resultadoID {
     margin-top: 1.5em;
     padding: 1em;
-    background-color: #e9f5e9;
-    border: 1px solid #d4edda;
+    
+    /* Fundo escuro e semi-transparente para combinar com o .container */
+    background-color: rgba(255, 255, 255, 0.05);
+    
+    /* Borda sutil de cor clara */
+    border: 1px solid rgba(255, 255, 255, 0.15);
     border-radius: 4px;
+    
+    /* Cor do texto de instrução no bloco */
+    color: rgba(255, 255, 255, 0.438); 
 }
 
 #idGerado {
     font-size: 1.2em;
     font-weight: bold;
-    color: #28a745;
+    
+    /* Cor que destaca o ID, como um azul ou dourado */
+    color: #FFD700; /* Dourado/Amarelo para um toque "Imperial" */
 }
 
 .perfil-info {
     margin-bottom: 2em;
     padding: 1em;
-    background-color: #f0f0f0;
+    background-color: #ffffff3f;
     border-radius: 8px;
 }
 
@@ -155,8 +227,8 @@ button:hover {
 
 /* Opcional: centralizar o conteúdo interno do item */
 .produto-item {
-    background-color: #fff;
-    border: 1px solid #eee;
+    background-color: #ffffff2a;
+    border: 1px solid #ffffff7c;
     border-radius: 8px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
     padding: 1em;

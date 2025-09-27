@@ -12,19 +12,16 @@
         <h2>Crie sua conta!</h2>
         <form id="cadastroForm">
             <div class="form-group">
-                <label for="nomeCompleto">Nome Completo:</label>
-                <input type="text" id="nomeCompleto" name="nomeCompleto" required>
+                <input type="text" id="nomeCompleto" name="nomeCompleto" placeholder="Nome Completo" required>
             </div>
             
             <div class="form-group">
-                <label for="dataNascimento">Data de Nascimento:</label>
-                <input type="date" id="dataNascimento" name="dataNascimento" required>
+                <input type="date" id="dataNascimento" name="dataNascimento" placeholder="Data de Nascimento" required>
             </div>
             
             <div class="form-group">
-                <label for="sexo">Sexo:</label>
                 <select id="sexo" name="sexo" required>
-                    <option value="">Selecione</option>
+                    <option value="">Sexo</option>
                     <option value="masculino">Masculino</option>
                     <option value="feminino">Feminino</option>
                     <option value="outro">Outro</option>
@@ -32,13 +29,11 @@
             </div>
             
             <div class="form-group">
-                <label for="cidade">Cidade:</label>
-                <input type="text" id="cidade" name="cidade" required>
+                <input type="text" id="cidade" name="cidade" placeholder="Cidade" required>
             </div>
             
             <div class="form-group">
-                <label for="estado">Estado: Somente a sigla!</label>
-                <input type="text" id="estado" name="estado" maxlength="2" required>
+                <input type="text" id="estado" name="estado" maxlength="2" placeholder="Estado - Somente a sigla!" required>
             </div>
 
             <button type="submit">Cadastrar</button>
