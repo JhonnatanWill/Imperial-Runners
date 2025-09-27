@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Configurar Perfil</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="centered-page">
+    <div class="container">
+        <h1>Seja bem-vindo(a)!</h1>
+        
+        <div class="perfil-info">
+            <h3>Seu ID de Usuário é:</h3>
+            <p id="idGerado"></p>
+        </div>
+
+        <div class="avatar-upload">
+            <div class="avatar-preview">
+                <img id="avatarImage" src="placeholder-avatar.png" alt="Avatar do Usuário">
+                <label for="fotoPerfilInput" class="upload-button" title="Alterar Foto">
+                    &#x1F4F7; 
+                </label>
+                <input type="file" id="fotoPerfilInput" accept="image/*">
+            </div>
+            <p class="alterar-foto-text">Alterar foto de perfil!</p>
+        </div>
+        <div class="form-group">
+            <label for="idIndicante">Fui indicado(a) por alguém?</label>
+            <input type="text" id="idIndicante" placeholder="Digite o ID do indicante">
+        </div>
+        
+        <button id="concluir">Concluir</button>
+    </div>
+
+    <script src="perfil.js"></script>
+</body>
+</html>

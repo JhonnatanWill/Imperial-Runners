@@ -1,0 +1,252 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    /* Removido o height: 100vh e o display: flex para permitir a rolagem normal. */
+}
+
+.container {
+    background-color: #fff;
+    padding: 2em;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    
+    /* Centraliza o contêiner na página e adiciona margem em cima e embaixo. */
+    width: 90%;
+    max-width: 1200px;
+    margin: 2em auto; /* A chave para a centralização horizontal e vertical! */
+    
+    box-sizing: border-box;
+    text-align: center;
+}
+
+/* Opcional: Adicionar um estilo para o título da página de produtos */
+.container h1 {
+    text-align: center;
+    margin-bottom: 1em;
+}
+
+.form-group {
+    margin-bottom: 1em;
+    text-align: left;
+}
+
+label {
+    display: block;
+    margin-bottom: 0.5em;
+    font-weight: bold;
+}
+
+input, select {
+    width: 100%;
+    padding: 0.8em;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+button {
+    width: 100%;
+    padding: 1em;
+    background-color: #007BFF;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    font-size: 1em;
+    cursor: pointer;
+    margin-top: 1em;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+#resultadoID {
+    margin-top: 1.5em;
+    padding: 1em;
+    background-color: #e9f5e9;
+    border: 1px solid #d4edda;
+    border-radius: 4px;
+}
+
+#idGerado {
+    font-size: 1.2em;
+    font-weight: bold;
+    color: #28a745;
+}
+
+.perfil-info {
+    margin-bottom: 2em;
+    padding: 1em;
+    background-color: #f0f0f0;
+    border-radius: 8px;
+}
+
+#fotoPerfil {
+    margin-top: 0.5em;
+}
+
+.avatar-upload {
+    position: relative;
+    width: 150px; /* Tamanho do avatar */
+    height: 150px;
+    margin: 2em auto 1em auto; /* Centraliza e adiciona espaço */
+    border-radius: 50%;
+    overflow: hidden; /* Garante que a imagem não saia do círculo */
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+.avatar-preview img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Garante que a imagem preencha o círculo sem distorcer */
+    border-radius: 50%; /* Faz a imagem interna ser circular */
+}
+
+.upload-button {
+    position: absolute;    
+    bottom: -15px; /* Ajuste para centralizar verticalmente um pouco abaixo do avatar */
+    left: 50%; /* Começa no centro horizontal do pai */
+    transform: translateX(-50%); /* Move o botão de volta em 50% da sua própria largura para centralizar */
+
+    background-color: #007BFF;
+    color: white;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    font-size: 1.5em;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    transition: background-color 0.3s ease;
+    z-index: 10; /* Garante que o botão fique acima de outros elementos se houver sobreposição */
+}
+
+.upload-button:hover {
+    background-color: #0056b3;
+}
+
+#fotoPerfilInput {
+    display: none; /* Esconde o input de arquivo padrão */
+}
+
+.alterar-foto-text {
+    margin-top: 0.5em;
+    font-size: 0.9em;
+    color: #555;
+}
+
+.lista-produtos {
+    display: flex;
+    flex-direction: column; /* Coloca os itens um abaixo do outro */
+    gap: 20px; /* Espaçamento entre os itens */
+    margin-top: 2em;
+    padding: 0 10px;
+}
+
+/* Opcional: Centralizar os itens na coluna */
+.lista-produtos .produto-item {
+    align-self: center; /* Centraliza cada item na horizontal */
+    width: 100%; /* Opcional: Garante que o item ocupe a largura total */
+    max-width: 600px; /* Limita a largura para não ficar muito grande em telas largas */
+}
+
+/* Opcional: centralizar o conteúdo interno do item */
+.produto-item {
+    background-color: #fff;
+    border: 1px solid #eee;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+    padding: 1em;
+    display: flex;
+    flex-direction: row; /* Mantém a imagem ao lado dos detalhes */
+    align-items: center;
+    gap: 15px;
+}
+
+.produto-item img {
+    width: 80px; /* Tamanho da imagem do produto */
+    height: 80px;
+    object-fit: contain; /* Para a imagem se ajustar sem cortar */
+    border-radius: 50%; /* Deixa a imagem circular */
+    border: 1px solid #ddd;
+    padding: 5px;
+}
+
+.produto-detalhes {
+    flex-grow: 1; /* Ocupa o espaço restante */
+    text-align: left; /* Alinha o texto à esquerda */
+}
+
+.produto-detalhes h2 {
+    margin: 0 0 0.2em 0; /* Espaçamento ajustado */
+    font-size: 1.3em;
+    color: #333;
+}
+
+.produto-detalhes .valor {
+    margin: 0 0 0.8em 0;
+    font-size: 1.1em;
+    color: #007BFF;
+    font-weight: bold;
+}
+
+.btn-adquirir {
+    background-color: #28a745; /* Cor verde para o botão de adquirir */
+    color: white;
+    padding: 0.7em 1.5em;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.9em;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+.btn-adquirir:hover {
+    background-color: #218838;
+}
+
+/* Ajustes para telas menores (opcional, para responsividade) */
+@media (max-width: 600px) {
+    .produto-item {
+        flex-direction: column; /* Em telas pequenas, imagem em cima e detalhes embaixo */
+        text-align: center;
+        padding: 1em 0.5em;
+    }
+    .produto-detalhes {
+        text-align: center;
+    }
+}
+
+/* Estilos para a barra de progresso */
+.progress-bar-container {
+    width: 100%;
+    background-color: #e0e0e0;
+    border-radius: 10px;
+    margin-top: 10px;
+    position: relative;
+    height: 20px;
+    overflow: hidden;
+}
+
+.progress-bar-fill {
+    height: 100%;
+    background-color: #ff6347; /* Cor da barra de progresso */
+    border-radius: 10px;
+    transition: width 0.4s ease; /* Animação suave */
+}
+
+.progress-bar-text {
+    position: absolute;
+    width: 100%;
+    text-align: center;
+    line-height: 20px;
+    color: #333;
+    font-size: 0.8em;
+    font-weight: bold;
+    top: 0;
+    left: 0;
+}

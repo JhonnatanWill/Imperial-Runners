@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro de Usuário</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="centered-page">
+    <div class="container">
+        <h1>COMECE SEU REINADO</h1>
+        <h2>Crie sua conta!</h2>
+        <form id="cadastroForm">
+            <div class="form-group">
+                <label for="nomeCompleto">Nome Completo:</label>
+                <input type="text" id="nomeCompleto" name="nomeCompleto" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="dataNascimento">Data de Nascimento:</label>
+                <input type="date" id="dataNascimento" name="dataNascimento" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="sexo">Sexo:</label>
+                <select id="sexo" name="sexo" required>
+                    <option value="">Selecione</option>
+                    <option value="masculino">Masculino</option>
+                    <option value="feminino">Feminino</option>
+                    <option value="outro">Outro</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label for="cidade">Cidade:</label>
+                <input type="text" id="cidade" name="cidade" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="estado">Estado: Somente a sigla!</label>
+                <input type="text" id="estado" name="estado" maxlength="2" required>
+            </div>
+
+            <button type="submit">Cadastrar</button>
+        </form>
+        
+        <div id="resultadoID" style="display: none;">
+            <h3>Seu ID de Usuário é:</h3>
+            <p id="idGerado"></p>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
