@@ -322,3 +322,22 @@ button:hover {
     top: 0;
     left: 0;
 }
+
+.page-scroll {
+    /* Anula as regras de centralização e altura fixa do body */
+    height: auto !important; /* Permite que o body cresça */
+    display: block !important; /* Desativa o Flexbox */
+    
+    /* Remove a centralização vertical */
+    justify-content: unset !important;
+    align-items: unset !important; 
+    
+    /* Garante que o conteúdo comece no topo */
+    padding-top: 1px; /* Um pequeno padding resolve problemas de margem */
+}
+
+/* Opcional: Garante que o .container na página de produtos tenha margem superior */
+.page-scroll .container {
+    margin-top: 2em;
+    margin-bottom: 2em;
+}
