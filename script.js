@@ -1,38 +1,109 @@
-// Função para gerar o novo ID sequencial no formato 000001
+// --- BASE DE DADOS SIMPLIFICADA PARA ESTADOS/CIDADES ---
+// O VALOR (value) DE CADA ESTADO É A SIGLA (ex: 'SP'), que usaremos para o ID.
+const estadosCidades = {
+    'AC': ['Rio Branco', 'Cruzeiro do Sul'],
+    'AM': ['Manaus', 'Parintins'],
+    'BA': ['Salvador', 'Feira de Santana'],
+    'MG': ['Belo Horizonte', 'Contagem', 'Uberlândia'],
+    'PR': ['Curitiba', 'Londrina'],
+    'RJ': ['Rio de Janeiro', 'Niterói'],
+    'SP': ['São Paulo', 'Campinas', 'Santos', 'Ribeirão Preto']
+};
+
+// --- FUNÇÕES DE LÓGICA E POPULAÇÃO DOS DROPDOWNS ---
+
+function popularEstados() {
+    const selectEstado = document.getElementById('estado');
+    const siglas = Object.keys(estadosCidades).sort(); // Pega as siglas e ordena
+
+    siglas.forEach(sigla => {
+        const option = document.createElement('option');
+        option.value = sigla; // O VALOR É A SIGLA!
+        option.textContent = sigla;
+        selectEstado.appendChild(option);
+    });
+}
+
+function popularCidades(siglaEstado) {
+    const selectCidade = document.getElementById('cidade');
+    
+    // Limpa opções antigas
+    selectCidade.innerHTML = '<option value="">Selecione a Cidade</option>'; 
+    
+    if (siglaEstado && estadosCidades[siglaEstado]) {
+        const cidades = estadosCidades[siglaEstado].sort(); // Pega as cidades e ordena
+        
+        cidades.forEach(cidade => {
+            const option = document.createElement('option');
+            option.value = cidade;
+            option.textContent = cidade;
+            selectCidade.appendChild(option);
+        });
+        selectCidade.disabled = false; // Habilita a lista de cidades
+    } else {
+        selectCidade.disabled = true; // Desabilita se nenhum estado for selecionado
+    }
+}
+
+// --- LÓGICA DO ID E SUBMISSÃO DO FORMULÁRIO (Ajustada) ---
+
 function gerarNovoNumeroSequencial() {
-    // Pega o último número armazenado ou começa em 0
     let ultimoIdNumero = localStorage.getItem('ultimoIdNumero');
     if (ultimoIdNumero === null) {
         ultimoIdNumero = 0;
     } else {
         ultimoIdNumero = parseInt(ultimoIdNumero);
     }
-
     let novoNumero = ultimoIdNumero + 1;
-
-    // Salva o novo número no armazenamento local
     localStorage.setItem('ultimoIdNumero', novoNumero);
-
-    // Formata o número para ter 6 dígitos, preenchendo com zeros
     return String(novoNumero).padStart(6, '0');
 }
 
-document.getElementById('cadastroForm').addEventListener('submit', function(e) {
-    e.preventDefault();
+document.addEventListener('DOMContentLoaded', function() {
+    // 1. POPULA OS ESTADOS ASSIM QUE A PÁGINA CARREGA
+    popularEstados();
 
-    // 1. Pega o valor do estado (e garante que esteja em letras maiúsculas)
-    const estado = document.getElementById('estado').value.toUpperCase();
+    const selectEstado = document.getElementById('estado');
+    const form = document.getElementById('cadastroForm');
 
-    // 2. Gera a parte sequencial do ID
-    const numeroSequencial = gerarNovoNumeroSequencial();
+    // 2. ESCUTA A MUDANÇA NO CAMPO ESTADO
+    selectEstado.addEventListener('change', function() {
+        const siglaSelecionada = this.value; // Captura a sigla (ex: 'SP')
+        popularCidades(siglaSelecionada);
+    });
 
-    // 3. Monta o ID final
-    // Formato: [000001] + [SP] + BR
-    const novoID = numeroSequencial + estado + 'BR';
-    
-    // 4. ARMAZENA O ID NO LOCALSTORAGE
-    localStorage.setItem('usuarioID', novoID);
+    // 3. ESCUTA A SUBMISSÃO DO FORMULÁRIO (Lógica do ID)
+    form.addEventListener('submit', function(e) {
+        e.preventDefault();
 
-    // 5. Redireciona para a página de perfil (simulando um cadastro bem-sucedido)
-    window.location.href = 'perfil.html';
+        // VALIDAÇÃO BÁSICA PARA GARANTIR QUE OS CAMPOS NÃO ESTÃO VAZIOS
+        if (selectEstado.value === "" || document.getElementById('cidade').value === "") {
+             alert("Por favor, selecione o Estado e a Cidade.");
+             return;
+        }
+
+        // --- AQUI A SIGLA É CAPTURADA DIRETAMENTE DO VALOR DO SELECT ---
+        const estadoSigla = selectEstado.value.toUpperCase(); 
+        
+        const numeroSequencial = gerarNovoNumeroSequencial();
+        
+        // Monta o ID final: [000001] + [SP] + BR
+        const novoID = numeroSequencial + estadoSigla + 'BR';
+        
+        localStorage.setItem('usuarioID', novoID);
+
+        // Redireciona para a página de perfil
+        window.location.href = 'perfil.html';
+    });
 });
+
+// --- LÓGICA PARA EXIBIR O ID NA PÁGINA DE PERFIL (Mantida) ---
+if (window.location.pathname.includes('perfil.html')) {
+    const usuarioID = localStorage.getItem('usuarioID');
+    const elementoID = document.getElementById('perfilIdGerado');
+
+    if (usuarioID && elementoID) {
+        elementoID.textContent = usuarioID;
+    } 
+    // Outras validações de perfil.js continuam válidas.
+}
