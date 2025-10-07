@@ -341,3 +341,13 @@ button:hover {
     margin-top: 2em;
     margin-bottom: 2em;
 }
+
+.logo-topo {
+    display: block; 
+    
+    /* ALTERE AQUI: O valor de width controla o tamanho */
+    width: 250px; 
+    
+    height: auto; /* Mantém a proporção da imagem */
+    margin: 0 auto 1.5em auto; 
+}
