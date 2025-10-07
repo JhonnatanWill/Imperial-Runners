@@ -1,30 +1,38 @@
-document.getElementById('cadastroForm').addEventListener('submit', function(event) {
-    event.preventDefault();
+// Função para gerar o novo ID sequencial no formato 000001
+function gerarNovoNumeroSequencial() {
+    // Pega o último número armazenado ou começa em 0
+    let ultimoIdNumero = localStorage.getItem('ultimoIdNumero');
+    if (ultimoIdNumero === null) {
+        ultimoIdNumero = 0;
+    } else {
+        ultimoIdNumero = parseInt(ultimoIdNumero);
+    }
 
-    const nomeCompleto = document.getElementById('nomeCompleto').value.trim();
-    const dataNascimento = document.getElementById('dataNascimento').value;
-    const cidade = document.getElementById('cidade').value.trim();
-    const estado = document.getElementById('estado').value.trim();
+    let novoNumero = ultimoIdNumero + 1;
 
-    const partesNome = nomeCompleto.split(' ');
-    const primeiroNome = partesNome[0];
-    const ultimoNome = partesNome[partesNome.length - 1];
-    
-    const tresPrimeirasNome = primeiroNome.substring(0, 3).toUpperCase();
-    const tresUltimasNome = ultimoNome.length >= 3 ? ultimoNome.substring(ultimoNome.length - 3).toUpperCase() : ultimoNome.toUpperCase();
-    
-    const partesData = dataNascimento.split('-');
-    const dia = partesData[2];
-    const mes = partesData[1];
-    
-    const duasPrimeirasCidade = cidade.substring(0, 2).toUpperCase();
-    const siglaEstado = estado.substring(0, 2).toUpperCase();
-    
-    const idGerado = `${tresPrimeirasNome}${tresUltimasNome}${dia}${mes}${duasPrimeirasCidade}${siglaEstado}`;
+    // Salva o novo número no armazenamento local
+    localStorage.setItem('ultimoIdNumero', novoNumero);
 
-    // Armazena o ID no armazenamento de sessão
-    sessionStorage.setItem('usuarioID', idGerado);
+    // Formata o número para ter 6 dígitos, preenchendo com zeros
+    return String(novoNumero).padStart(6, '0');
+}
 
-    // Redireciona o usuário para a página de perfil
+document.getElementById('cadastroForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+
+    // 1. Pega o valor do estado (e garante que esteja em letras maiúsculas)
+    const estado = document.getElementById('estado').value.toUpperCase();
+
+    // 2. Gera a parte sequencial do ID
+    const numeroSequencial = gerarNovoNumeroSequencial();
+
+    // 3. Monta o ID final
+    // Formato: [000001] + [SP] + BR
+    const novoID = numeroSequencial + estado + 'BR';
+    
+    // 4. ARMAZENA O ID NO LOCALSTORAGE
+    localStorage.setItem('usuarioID', novoID);
+
+    // 5. Redireciona para a página de perfil (simulando um cadastro bem-sucedido)
     window.location.href = 'perfil.html';
 });
