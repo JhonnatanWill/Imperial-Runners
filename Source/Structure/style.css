@@ -8,7 +8,7 @@ body {
     margin: 0;
     
     /* Configuração da imagem de fundo */
-    background-image: url('../Background/Fundo01.png');
+    background-image: url('../Imagens/Background/Fundo01.png');
     background-size: cover;
     background-position: center center;
     background-repeat: no-repeat;
