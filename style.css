@@ -239,11 +239,11 @@ button:hover {
 }
 
 .produto-item img {
-    width: 80px; /* Tamanho da imagem do produto */
-    height: 80px;
+    width: 150px; /* Tamanho da imagem do produto */
+    height: 150px;
     object-fit: contain; /* Para a imagem se ajustar sem cortar */
-    border-radius: 50%; /* Deixa a imagem circular */
-    border: 1px solid #ddd;
+    border-radius: 0%; /* Deixa a imagem circular */
+    border: 0px solid #ddd;
     padding: 5px;
 }
 
