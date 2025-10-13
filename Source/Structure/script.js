@@ -113,7 +113,7 @@ document.addEventListener('DOMContentLoaded', function() {
         localStorage.setItem('usuarioID', novoID);
 
         // Redireciona para a página de perfil
-        window.location.href = 'perfil.html';
+        window.location.href = '../Imperial Runners/Source/Pages/perfil.html';
     });
 });
 
